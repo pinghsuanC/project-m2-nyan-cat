@@ -68,6 +68,26 @@ class Engine {
   // This method is not implemented correctly, which is why
   // the burger never dies. In your exercises you will fix this method.
   isPlayerDead = () => {
+    // when the location of player and any of the enemy overlaps then die.
+
+    for(let n=0; n<this.enemies.length; n++){
+      // by the time we check, we already have all the enemies destroyed removed
+      // moment of collision:
+        /* general rule:
+          1. player.x < enemy.x + enemy width
+          2. player.x + player width > enemy.x
+          3. player.y < enemy.y + enemy height
+          4. player.y + player height > enemy.y
+        */
+      if((this.player.getX() < (this.enemies[n].getX()+ENEMY_WIDTH)) &&
+        ((this.player.getX()+PLAYER_WIDTH) > this.enemies[n].getX()) &&
+        (this.player.getY() < (this.enemies[n].getY()+ENEMY_HEIGHT)) &&
+        (this.player.getY()+PLAYER_HEIGHT) > this.enemies[n].getY()){
+        return true;
+      }
+    }
+    
+    
     return false;
   };
 }

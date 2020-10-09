@@ -46,7 +46,8 @@ const addBackground = (root) => {
   bg.src = 'images/stars.png';
   bg.style.height = `${GAME_HEIGHT}px`;
   bg.style.width = `${GAME_WIDTH}px`;
-
+  // make the image fit
+  bg.style.objectFit = "cover";
   // We add it to the root DOM node
   root.append(bg);
 
@@ -62,5 +63,8 @@ const addBackground = (root) => {
   whiteBox.style.height = `${ENEMY_HEIGHT}px`;
   whiteBox.style.width = `${GAME_WIDTH}px`;
   whiteBox.style.background = '#fff';
+  // make the background looks nicer...
+  whiteBox.style.overflow = "hidden";
+
   root.append(whiteBox);
 };

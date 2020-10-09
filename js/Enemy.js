@@ -68,4 +68,12 @@ class Enemy {
       this.destroyed = true;
     }
   }
+
+  // ==================== functions added ====================
+  getX(){   // x-position getter
+    return this.x;
+  }
+  getY(){   // y-position getter
+    return this.y;
+  }
 }
