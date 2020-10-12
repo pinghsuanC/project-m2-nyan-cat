@@ -39,11 +39,15 @@ const nextEnemySpot = (enemies) => {
 // The function takes one parameter
 // The parameter represents the DOM node to which we will add the background
 const addBackground = (root) => {
+  // create the full-screen default mode
+  createDefault();
   // We create a new img DOM node.
   const bg = document.createElement('img');
 
   // We set its src attribute and the height and width CSS attributes
-  bg.src = 'images/stars.png';
+  // choosing random picture from the folder
+  let num = Math.floor(Math.random() * WALLPAPER_NUM + 1);
+  bg.src = `images/background/background_${num}.jpg`;
   bg.style.height = `${GAME_HEIGHT}px`;
   bg.style.width = `${GAME_WIDTH}px`;
   // make the image fit
@@ -54,7 +58,7 @@ const addBackground = (root) => {
   // We don't want the enemies to go beyond the lower edge of the image
   // so we place a white div to hide the enemies after they reach the bottom.
   // To see what it does, you can comment out all the remaining lines in the function to see the effect.
-  const whiteBox = document.createElement('div');
+  /*const whiteBox = document.createElement('div');
 
   // We put a high z-index so that the div is placed over all other DOM nodes
   whiteBox.style.zIndex = 100;
@@ -66,5 +70,22 @@ const addBackground = (root) => {
   // make the background looks nicer...
   whiteBox.style.overflow = "hidden";
 
-  root.append(whiteBox);
+  root.append(whiteBox);*/
 };
+
+
+// method to set background to 0 margin
+// and also set the app to overflow so we don't have empty space at the bottom
+function createDefault(){
+  let b_node = document.getElementsByTagName("BODY")[0];
+  b_node.style.fontFamily = "Russo One, sans-serif";
+  b_node.style.margin="0";
+  b_node.style.overflow = "hidden";
+  let app_node = document.getElementById('app');
+  app_node.style.overflow = "hidden";
+  app_node.style.objectFit = "cover";
+}
+
+
+
+
