@@ -90,12 +90,12 @@ class Engine {
     // (new Date).getTime() evaluates to the number of milliseconds since January 1st, 1970 at midnight.
     if (this.lastFrame === undefined) {
       this.lastFrame = new Date().getTime();
-      TIME_TOTAL = new Date().getTime();
+      TIME_INITIAL = new Date().getTime();
     }
 
     let timeDiff = new Date().getTime() - this.lastFrame;
     this.lastFrame = new Date().getTime();
-    TIME_TOTAL = new Date().getTime() - TIME_TOTAL;   // update total time
+    TIME_TOTAL = new Date().getTime() - TIME_INITIAL;   // update total time
 
     // We use the number of milliseconds since the last call to gameLoop to update the enemy positions.
     // Furthermore, if any enemy is below the bottom of our game, its destroyed property will be set. (See Enemy.js)
@@ -289,7 +289,9 @@ class Engine {
     this.enemies = [];
     this.bullets = [];
     this.tomato_bonus = [];
-    TIME_TOTAL = 0;  
+    this.lastFrame = undefined;
+    TIME_INITIAL = undefined;
+    TIME_TOTAL = undefined;  
     
     // atop all the music in the audioboot
     // this.audioBoot.stopAll();

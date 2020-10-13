@@ -38,6 +38,7 @@ const PLAYER_MAX_BULLET = 10;
 
 // time elapsed, used to increase difficulty!
     // (new Date).getTime() evaluates to the number of milliseconds since January 1st, 1970 at midnight.
+let TIME_INITIAL = undefined;
 let TIME_TOTAL = undefined;
 let timeoue_ids = [];
 

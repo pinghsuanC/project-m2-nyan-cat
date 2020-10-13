@@ -84,7 +84,8 @@ class Enemy {
     // We update the y property of the instance in proportion of the amount of time
     // since the last call to update. We also update the top css property so that the image
     // is updated on screen
-    this.y = this.y + timeDiff * this.speed;
+                                  // random number between 0.5 and 1.5
+    this.y = this.y + timeDiff * this.speed + Math.exp(1/TIME_TOTAL)/5;
     this.domElement.style.top = `${this.y}px`;
 
     // If the y position of the DOM element is greater than the GAME_HEIGHT then the enemy is at the bottom
@@ -110,7 +111,7 @@ class Enemy {
     return ENEMY_HEIGHT;
   }
   getScore(){
-    return Math.round(this.score*(1+Math.log(this.speed)));
+    return Math.round(this.score*(Math.exp(1/Math.log(TIME_TOTAL))));
   }
 
 }
@@ -163,7 +164,7 @@ class FloatingEnemy{
     // We update the y property of the instance in proportion of the amount of time
     // since the last call to update. We also update the top css property so that the image
     // is updated on screen
-    this.y = this.y - Math.random()*this.speed*10 - timeDiff*0.05;
+    this.y = this.y - Math.random()*this.speed*10 - 0.2*timeDiff - Math.exp(1/TIME_TOTAL)/5;
     this.domElement.style.top = `${this.y}px`;
 
     //this.moveUp(timeDiff);
@@ -189,7 +190,7 @@ class FloatingEnemy{
     return ENEMYF_HEIGHT;
   }
   getScore(){
-    return Math.round(this.score*(1+Math.log(this.speed)));
+    return Math.round(this.score*(Math.exp(1/Math.log(TIME_TOTAL))));
   }
 
 
