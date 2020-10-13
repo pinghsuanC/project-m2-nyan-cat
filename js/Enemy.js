@@ -76,8 +76,8 @@ class Enemy {
   // timeDiff refers to the number of milliseconds since the last update was called.
   update(timeDiff) {
     // check for start
-    if(this.y >= 0 && this.y <= -ENEMY_HEIGHT/2){
-      if(Math.random()<0.01){
+    if(this.y >= 0 && this.y <= ENEMY_HEIGHT/2){
+      if(Math.random()<0.004){
         this.audioBoot.playSound("meow_start") // 50% of probability to meow
       }
     }
@@ -110,7 +110,7 @@ class Enemy {
     return ENEMY_HEIGHT;
   }
   getScore(){
-    return this.score;
+    return Math.round(this.score*(1+Math.log(this.speed)));
   }
 
 }
@@ -156,6 +156,10 @@ class FloatingEnemy{
   }
 
   update(timeDiff) {
+    // check for the head
+    if(this.y < ENEMYF_HEIGHT/2){
+
+    }
     // We update the y property of the instance in proportion of the amount of time
     // since the last call to update. We also update the top css property so that the image
     // is updated on screen
@@ -185,7 +189,7 @@ class FloatingEnemy{
     return ENEMYF_HEIGHT;
   }
   getScore(){
-    return this.score;
+    return Math.round(this.score*(1+Math.log(this.speed)));
   }
 
 

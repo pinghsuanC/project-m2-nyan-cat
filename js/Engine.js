@@ -13,11 +13,12 @@ class Engine {
     // Please refer to Player.js for more information about what happens when you create a player
     this.player = undefined;
     // Initially, we have no enemies in the game. The enemies property refers to an array
-    // that contains instances of the Enemy class
+    // that contains ins tances of the Enemy class
     this.enemies = [];
     this.bullets = [];
     this.tomato_bonus = [];
     this.totalScore = 0;
+    this.continue = true;
     // We add the background image to the game
     addBackground(this.root);
   }
@@ -54,7 +55,7 @@ class Engine {
 
         info.style.position = 'absolute';
         info.style.display = "inline-block";
-        info.style.width = "100px";
+        info.style.width = "200px";
         info.style.height = "70px";
         info.style.maxHeight = "100px";
         //info.style.width = "200px";
@@ -67,8 +68,8 @@ class Engine {
     
         // =============== add a text ===============
         let info_inner = document.createElement("DIV");
-        info_inner.innerHTML = `<p><img src="./images/player_tomato.png">x<span id="info-tomato">10</span></p>
-                                  <p><img src="./images/player_heart.png">x<span id="info-life">5</span></p>
+        info_inner.innerHTML = `<p><img src="./images/player_tomato.png" class="info-img">x<span id="info-tomato">${PLAYER_MAX_BULLET}</span></p>
+                                  <p><img src="./images/player_heart.png" class="info-img">x<span id="info-life">${PLAYER_LIFE}</span></p>
                                   <p>Score:<span id="info-score"></span></p>`;
         info_inner.style.lineHeight = "35px";
         info_inner.style.color = "black";
@@ -178,24 +179,23 @@ class Engine {
         //update life
         this.player.reduceLife();
         this.audioBoot.playSound("player_hit");
-        // if life = 0 then end the game
-        if(this.player.getLife()===-1){
-          this.audioBoot.stopAll();
-          this.audioBoot.playSound("meow_end");
-          this.audioBoot.playSound("game_over");
-          window.alert('Game over');
-          return;
-        }
-        setTimeout(this.gameLoop, 20);
-      
-    }else{
+    }
+    if(this.isPlayerDead()){
+      this.audioBoot.playSound("meow_end");
+      this.audioBoot.playSound("game_over");
+      this.reset();
+      this.continue = false;
+      //window.alert("END");
+      return;
+    }else if(this.continue){
       // If the player is not dead, then we put a setTimeout to run the gameLoop in 20 milliseconds
       setTimeout(this.gameLoop, 20);
     }
     
-    
   };
-
+  isPlayerDead = () => {
+    return (this.player.getLife() === -1 ? true : false);
+  }
   // This method is not implemented correctly, which is why
   // the burger never dies. In your exercises you will fix this method.
   isPlayerHit = () => {
@@ -243,6 +243,7 @@ class Engine {
         (this.tomato_bonus[n].getY()+TOMATO_HEIGHT) > this.player.getY() &&
           this.tomato_bonus[n].hasUsed===false){
           this.audioBoot.playSound("player_collect");   // play sound
+          this.totalScore += this.tomato_bonus[n].getScore();
           this.player.collectATomato();
           this.tomato_bonus[n].hasUsed = true;    // flag the enemy to be removed
       }
@@ -268,17 +269,101 @@ class Engine {
   };
 
   reset(){
+    // remove the html
+    // remove all the elements
+    this.enemies.forEach((enemy) => {
+      enemy.shot = true;
+      enemy.update(0);
+    });
+    // remove the bullet
+    this.bullets.forEach((element) => {
+      element.hasUsed = true;
+      element.update(0);
+    });
+    this.tomato_bonus.forEach((ele) => {
+      ele.hasUsed = true;
+      ele.removeTomato();
+    });
+
     // reset all the parameters
     this.enemies = [];
     this.bullets = [];
     this.tomato_bonus = [];
-    // create a new player
-    this.player.reset();
-    // reset the audio bot
-    this.audioBoot.reset();
-    // add background
-    addBackground(this.root);
+    
+    // atop all the music in the audioboot
+    // this.audioBoot.stopAll();
+    // randomly add background
+    // addBackground(this.root);
+
+    this.restartBoard(this.root);
   }
 
+  restartBoard = (root) => {
+    // =============== add a wrapper: a board with a line of text and two buttons ===============
+    // will be deleted after return.
+    let startQ = document.createElement("DIV");
+    this.del_node = startQ;
+    //console.log(this.del_node);
+
+    startQ.style.position = 'absolute';
+    startQ.style.height = "400px";
+    startQ.style.width = "1000px";
+    startQ.style.top = `${GAME_HEIGHT/2-300}`;
+    startQ.style.left = `${GAME_WIDTH/2-500 - 10}`;
+    startQ.style.display = "flex";
+    startQ.style.flexDirection="column";
+    startQ.style.alignItems = "center";
+    startQ.style.zIndex = 100;
+    //startQ.style.background = "white";
+    // append the board to the app root
+    this.root.appendChild(startQ);
+
+    // =============== add a text ===============
+    let start_ques = document.createElement("DIV");
+    start_ques.innerHTML = "Oops... ";
+    start_ques.style.color = "white"
+    start_ques.style.textAlign = "center";
+    start_ques.style.fontSize = "4em";
+    start_ques.classList.add("start-ques");
+    startQ.appendChild(start_ques);
+    // =============== add a text ===============
+    let start_intro = document.createElement("DIV");
+    start_intro.innerHTML = `<p>You gave them a big meal :D.</p>
+                              <p>Do you want to try again?</p>
+                            <p>Though the one below is the only option XD.</p>
+                            <p>There will be no count down before start because I am lazy :P.</p>`;
+    start_intro.style.width = "500px"
+    start_intro.style.padding = "10px"
+    start_intro.style.color = "black";
+    start_intro.style.backgroundColor = "rgba(229, 229, 229, 0.44)";
+    start_intro.style.marginTop = "30px";
+    start_intro.style.textAlign = "center";
+    start_intro.style.fontSize = "1em";
+    startQ.appendChild(start_intro);
+    // =============== add a buttons ===============
+    let startQ_buts = document.createElement("DIV");
+    let start_but = document.createElement("BUTTON");
+    start_but.classList.add("start-btn");
+    start_but.innerHTML = "YES";
+    startQ_buts.appendChild(start_but);
+    startQ.appendChild(startQ_buts);
+    
+    // =============== add event listener and return ===============
+    let self = this;
+    this.del_node = startQ;
+    start_but.addEventListener("click", function(){
+      self.totalScore = 0;
+      // create a new player
+      self.player.reset();
+      self.continue = true;
+      // delete del_node
+      self.del_node.remove();
+      // restart the game after displaying "Ready!"
+
+      self.gameLoop()});
+      
+    }
 }
+
+
 
