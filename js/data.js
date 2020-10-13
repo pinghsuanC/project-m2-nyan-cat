@@ -12,7 +12,7 @@ const GAME_HEIGHT = window.innerHeight;
 // as well as the maximum number of enemies on screen at any given time.
 const ENEMY_WIDTH = 75;
 const ENEMY_HEIGHT = 156;
-const MAX_ENEMIES = 12;
+const MAX_ENEMIES = Math.floor(GAME_WIDTH/ENEMY_WIDTH-1);
 const MAX_ENEMYF = Math.floor(MAX_ENEMIES/2.5);
 
 // the floating enemy width and height
