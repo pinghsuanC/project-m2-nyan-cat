@@ -289,6 +289,7 @@ class Engine {
     this.enemies = [];
     this.bullets = [];
     this.tomato_bonus = [];
+    TIME_TOTAL = undefined;  
     
     // atop all the music in the audioboot
     // this.audioBoot.stopAll();
