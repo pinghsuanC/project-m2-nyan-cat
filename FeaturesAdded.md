@@ -1,5 +1,6 @@
 # Features Added (And all the credits of resource) - latest version
 * _Basically I decided to work on the functionality of the game..._
+* Link to Netlify: https://pinghsuanc-nyan-cat-extended.netlify.app
 * Update player
     - Smooth free movement rather than grid movement by ←↑↓→
         - Removed the lag between first press and consequent presses.
