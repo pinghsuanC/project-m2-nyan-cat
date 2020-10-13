@@ -49,7 +49,7 @@ class Driver {
         let start_intro = document.createElement("DIV");
         start_intro.innerHTML = `<p>A hamburger was travelling through the space when he encountered a group of hungry nyan cats...</p>
                                     <p>Though he wanted to be friends with them, the cats decided he was too delicious to be friend with...(sad story)</p>
-                                    <p>Use [space] to a tomato <img src="./images/player_tomato.png">.</p>
+                                    <p>Use [space] to shoot a tomato <img src="./images/player_tomato.png">.</p>
                                     <p>Use ←↑↓→ to contol his movement to avoid cats or pick up tomatoes.</p>
                                     <p>Press START below to start the game!</p>
                                     <p>♥ There will be a countdown before start, get ready ♥</p>`;
