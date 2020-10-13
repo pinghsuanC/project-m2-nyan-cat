@@ -39,7 +39,7 @@ class Driver {
     
         // =============== add a text ===============
         let start_ques = document.createElement("DIV");
-        start_ques.innerHTML = "I CAN HAZ CHEEZBURGER?!??";
+        start_ques.innerHTML = "I CAN HAZ CHEEZBURGER?!??(extended.ver)";
         start_ques.style.color = "white"
         start_ques.style.textAlign = "center";
         start_ques.style.fontSize = "4em";
@@ -47,16 +47,16 @@ class Driver {
         startQ.appendChild(start_ques);
         // =============== add a text ===============
         let start_intro = document.createElement("DIV");
-        start_intro.innerHTML = `<p>A hamburger was travelling through the space while he encountered a group of hungry nyan cats...</p>
+        start_intro.innerHTML = `<p>A hamburger was travelling through the space when he encountered a group of hungry nyan cats...</p>
                                     <p>Though he wanted to be friends with them, the cats decided he was too delicious to be friend with...(sad story)</p>
-                                    <p>Use [space] to shoot  some tomatoes <img src="./images/player_tomato.png">.</p>
-                                    <p>Use ←↑↓→ to contol his movement to avoid cats or pick up tomatoes!</p>
+                                    <p>Use [space] to a tomato <img src="./images/player_tomato.png">.</p>
+                                    <p>Use ←↑↓→ to contol his movement to avoid cats or pick up tomatoes.</p>
                                     <p>Press START below to start the game!</p>
-                                    <p>♥There will be a countdown before start, get ready♥</p>`;
+                                    <p>♥ There will be a countdown before start, get ready ♥</p>`;
         start_intro.style.width = "500px"
         start_intro.style.padding = "10px"
         start_intro.style.color = "black";
-        start_intro.style.backgroundColor = "rgba(229, 229, 229, 0.44)";
+        start_intro.style.backgroundColor = "rgba(229, 229, 229, 0.6)";
         start_intro.style.marginTop = "30px";
         start_intro.style.textAlign = "center";
         start_intro.style.fontSize = "1em";

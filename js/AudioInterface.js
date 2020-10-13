@@ -23,7 +23,11 @@ class AudioInterface{
     }
     playSound(name_sound){
         this.#audio_obj[name_sound].load();
-        this.#audio_obj[name_sound].play();
+        let prom = this.#audio_obj[name_sound].play();
+        if(prom !== undefined){
+            prom.then().catch(error => {}); // prevent dom exception
+                    // https://developers.google.com/web/updates/2017/06/play-request-was-interrupted
+        }
     }
     stopAll(){
         Object.values(this.#audio_obj).forEach(ele => {
@@ -34,6 +38,7 @@ class AudioInterface{
     loopBackgound(){
         // loop the background music
         let bgm = this.#audio_obj["game_background"];
+        bgm.volume = 0.7;
         if (typeof bgm.loop == 'boolean'){
             bgm.loop = true;
         }

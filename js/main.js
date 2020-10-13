@@ -20,6 +20,9 @@ let css_start_btn = `
         .start-btn:focus{
         outline: none;
         background-color: gray;
+        }
+        .info-img{
+            height: 15px;
         }`;
 let style_node = document.createElement("style");
 style_node.type = "text/css";

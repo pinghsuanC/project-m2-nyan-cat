@@ -19,8 +19,8 @@ class Tomato{
         this.destroyed = false; // whether it's out of boundary or not
         this.hasUsed = false;   // whether it's hit the target
 
-        this.speed = Math.random() / 2 + 0.35;
-
+        this.speed = 0.7;
+        this.score = 500;   // 500 pt for tomato eating!
         // We create a DOM node. We will be updating the DOM node every time we move the player, so we store a reference to the
         // DOM node in a property.
         this.domElement = document.createElement('img');
@@ -58,6 +58,9 @@ class Tomato{
     }
     getWidth(){
         return TOMATO_WIDTH;
+    }
+    getScore(){
+        return this.score;
     }
 
     update = (timeDiff) =>{
