@@ -131,17 +131,17 @@ class Engine {
 
     //let tmp = Array.from(this.tomato_bonus);  // copy the array
     // We need to perform the addition of enemies until we have enough enemies.
-    let count = 0
+    //let count = 0
     while (this.enemies.length < MAX_ENEMIES) {
       // We find the next available spot and, using this spot, we create an enemy.
       // We add this enemy to the enemies array
       const spot = nextEnemySpot(this.enemies);
       let tmp = Math.random();
-      if(tmp<0.7 || count>MAX_ENEMYF){
+      if(tmp<0.7 || NUM_ENEMYF>=MAX_ENEMYF){
         this.enemies.push(new Enemy(this.root, spot, this.audioBoot));
       }else{
         this.enemies.push(new FloatingEnemy(this.root));
-        count++;
+        NUM_ENEMYF++;
       }
     }
     // add tomato to the screen
@@ -338,7 +338,7 @@ class Engine {
     start_intro.style.width = "500px"
     start_intro.style.padding = "10px"
     start_intro.style.color = "black";
-    start_intro.style.backgroundColor = "rgba(229, 229, 229, 0.44)";
+    start_intro.style.backgroundColor = "rgba(229, 229, 229, 0.5)";
     start_intro.style.marginTop = "30px";
     start_intro.style.textAlign = "center";
     start_intro.style.fontSize = "1em";

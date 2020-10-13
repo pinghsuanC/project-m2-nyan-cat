@@ -50,7 +50,7 @@ class Enemy {
 
     // Show that the user can actually see the img DOM node, we append it to the root DOM node.
     theRoot.appendChild(this.domElement);
-    this.speed = Math.random() / 2 + 0.15 + TIME_TOTAL/1000*0.01;
+    this.speed = Math.random() / 2 + 0.15 + 1/(Math.exp(1/Math.log(TIME_TOTAL*5)))/20;
 
     // pictures
     this.images = ["./images/enemy.png", "./images/enemy_eyesClosed.png", "./images/enemy_eyesClosedSmile.png"];
@@ -77,7 +77,7 @@ class Enemy {
   update(timeDiff) {
     // check for start
     if(this.y >= 0 && this.y <= ENEMY_HEIGHT/2){
-      if(Math.random()<0.004){
+      if(Math.random()<0.001){
         this.audioBoot.playSound("meow_start") // 50% of probability to meow
       }
     }
@@ -85,7 +85,7 @@ class Enemy {
     // since the last call to update. We also update the top css property so that the image
     // is updated on screen
                                   // random number between 0.5 and 1.5
-    this.y = this.y + timeDiff * this.speed + Math.exp(1/TIME_TOTAL)/5;
+    this.y = this.y + timeDiff * this.speed;
     this.domElement.style.top = `${this.y}px`;
 
     // If the y position of the DOM element is greater than the GAME_HEIGHT then the enemy is at the bottom
@@ -111,7 +111,7 @@ class Enemy {
     return ENEMY_HEIGHT;
   }
   getScore(){
-    return Math.round(this.score*(Math.exp(1/Math.log(TIME_TOTAL))));
+    return Math.round(this.score*(1/(Math.exp(1/Math.log(TIME_TOTAL)))));
   }
 
 }
@@ -157,10 +157,7 @@ class FloatingEnemy{
   }
 
   update(timeDiff) {
-    // check for the head
-    if(this.y < ENEMYF_HEIGHT/2){
 
-    }
     // We update the y property of the instance in proportion of the amount of time
     // since the last call to update. We also update the top css property so that the image
     // is updated on screen
@@ -174,6 +171,7 @@ class FloatingEnemy{
     if (this.y <= -ENEMYF_HEIGHT || this.shot) {
       this.domElement.remove();
       this.destroyed = true;
+      NUM_ENEMYF--; // update number of floating enemies
     }
   }
 
@@ -190,7 +188,7 @@ class FloatingEnemy{
     return ENEMYF_HEIGHT;
   }
   getScore(){
-    return Math.round(this.score*(Math.exp(1/Math.log(TIME_TOTAL))));
+    return Math.round(this.score*(1/(Math.exp(1/Math.log(TIME_TOTAL)))));
   }
 
 

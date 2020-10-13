@@ -12,8 +12,9 @@ const GAME_HEIGHT = window.innerHeight;
 // as well as the maximum number of enemies on screen at any given time.
 const ENEMY_WIDTH = 75;
 const ENEMY_HEIGHT = 156;
-const MAX_ENEMIES = Math.floor(GAME_WIDTH/ENEMY_WIDTH-1);
-const MAX_ENEMYF = Math.floor(MAX_ENEMIES/2.5);
+const MAX_ENEMIES = Math.floor(GAME_WIDTH/(ENEMY_WIDTH*1.6));
+const MAX_ENEMYF = Math.floor(MAX_ENEMIES/2);
+let NUM_ENEMYF = 0;
 
 // the floating enemy width and height
 const ENEMYF_WIDTH = 301/5;
@@ -26,15 +27,15 @@ const PLAYER_HEIGHT = 54;
 // constants representing the width and height of the tomato
 const TOMATO_WIDTH = 18*2;
 const TOMATO_HEIGHT = 17*2;
-const SCREEN_MAX_TOMATO = 3;
+const SCREEN_MAX_TOMATO = 5;
 
 // number of wall papers in the folder
 const WALLPAPER_NUM = 5;
 
 // number for sensitivity
 const PLAYER_SPEED = 20;
-const PLAYER_LIFE = 10;
-const PLAYER_MAX_BULLET = 10;
+const PLAYER_LIFE = 20;
+const PLAYER_MAX_BULLET = 15;
 
 // time elapsed, used to increase difficulty!
     // (new Date).getTime() evaluates to the number of milliseconds since January 1st, 1970 at midnight.
