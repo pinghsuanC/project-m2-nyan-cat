@@ -6,7 +6,7 @@ let css_start_btn = `
         button.start-btn {
         width: 200px;
         height: 50px;
-        margin-top: 30px;
+        margin-top: 20px;
         margin-left: 10px;
         margin-right: 10px;
         font-family: "Russo One", sans-serif;

@@ -47,11 +47,9 @@ class Driver {
         startQ.appendChild(start_ques);
         // =============== add a text ===============
         let start_intro = document.createElement("DIV");
-        start_intro.innerHTML = `<p>A hamburger was travelling through the space when he encountered a group of hungry nyan cats... Though he wanted to be friends with them, the cats decided he was too delicious to be friend with...(sad story)</p>
-                                    <p>You probably have no chance to survive...but please struggle for your life as long as you can.</p>
-                                    <p>Use [space] to shoot a tomato <img src="./images/player_tomato.png"> at the cats for points.</p>
-                                    <p>Use ←↑↓→ to contol your movement to avoid cats or pick up tomatoes.</p>
-                                    <p>You will earn points by picking tomatoes and shooting cats, and points will be proportional to the time.</p>
+        start_intro.innerHTML = `<p> You, a hamburger, was travelling through the space when you encountered a group of hungry nyan cats... Though you wanted to be friends with them, the cats decided you were too delicious to be friend with...(sad story). </p>
+                                    <p>You probably have no chance to survive...but you struggled for your life for as long as you can.</p>
+                                    <p>Use [space] to shoot a tomato <img src="./images/player_tomato.png"> at the cats, and use ←↑↓→ to contol your movement to avoid cats or pick up tomatoes.</p>
                                     <p>Press START below to start the game!</p>
                                     <p>♥ There will be a countdown before start, get ready ♥</p>`;
         start_intro.style.width = "500px"
